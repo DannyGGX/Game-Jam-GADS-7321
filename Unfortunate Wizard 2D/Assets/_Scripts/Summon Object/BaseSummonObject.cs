@@ -11,8 +11,6 @@ public class BaseSummonObject : MonoBehaviour
     [SerializeField, Tooltip("The object can have multiple colliders")] private Collider2D[] colliders;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private bool IsIndicatorMode;
-
     private void SetColliderTriggerStatus(bool isTrigger)
     {
         foreach (var collider in colliders)
@@ -28,7 +26,6 @@ public class BaseSummonObject : MonoBehaviour
     
     public void SetToIndicatorMode()
     {
-        IsIndicatorMode = true;
         SetColliderTriggerStatus(true);
     }
 

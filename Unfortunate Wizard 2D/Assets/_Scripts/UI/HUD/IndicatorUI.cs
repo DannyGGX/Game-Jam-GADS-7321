@@ -38,7 +38,7 @@ public class IndicatorUI : MonoBehaviour
     public void SetIndicatorObject(BaseSummonObject prefab)
     {
         currentObject = GameObject.Instantiate(prefab, Input.mousePosition, RotationHelper.RotationToQuaternion(), indicatorTransform);
-        
+        currentObject.SetToIndicatorMode();
     }
     
     
