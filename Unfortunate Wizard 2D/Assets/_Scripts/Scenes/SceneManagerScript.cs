@@ -32,5 +32,24 @@ public class SceneManagerScript : MonoBehaviour
 
         SceneManager.LoadScene(targetScene.BuildIndex);
     }
+    
+
+    public void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        currentSceneIndex++;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    
+    private Scenes GetCurrentSceneName()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        return (Scenes)currentSceneIndex;
+    }
+    
+    public void RestartCurrentScene()
+    {
+        LoadScene(GetCurrentSceneName());
+    }
 
 }
