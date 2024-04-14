@@ -14,4 +14,6 @@ public class SingleCardUI : MonoBehaviour
         cardName.text = data.name.ReplaceUnderscoreWithSpace();
         
     }
+    
+    
 }
