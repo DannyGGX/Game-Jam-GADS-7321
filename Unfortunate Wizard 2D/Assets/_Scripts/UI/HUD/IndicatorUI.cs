@@ -14,29 +14,36 @@ public class IndicatorUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.onCardSelected.Subscribe(ReceiveCardSelected);
-        EventManager.onCardDeselected.Subscribe(ReceiveCardDeselected);
+        EventManager.onCardSelected.Subscribe(EnableIndicator);
+        EventManager.onCardDeselected.Subscribe(DisableIndicator);
         EventManager.onIndicatorObjectChangeTriggerCollision.Subscribe(SetIndicatorCollision);
         EventManager.onIndicatorRotate.Subscribe(ChangeIndicatorRotation);
+        EventManager.onSpawnObject.Subscribe(ReceiveObjectSpawned);
     }
 
     private void OnDisable()
     {
-        EventManager.onCardSelected.Unsubscribe(ReceiveCardSelected);
-        EventManager.onCardDeselected.Unsubscribe(ReceiveCardDeselected);
+        EventManager.onCardSelected.Unsubscribe(EnableIndicator);
+        EventManager.onCardDeselected.Unsubscribe(DisableIndicator);
         EventManager.onIndicatorObjectChangeTriggerCollision.Unsubscribe(SetIndicatorCollision);
         EventManager.onIndicatorRotate.Unsubscribe(ChangeIndicatorRotation);
+        EventManager.onSpawnObject.Unsubscribe(ReceiveObjectSpawned);
     }
     
-    private void ReceiveCardSelected(CardInfo cardInfo)
+    private void EnableIndicator(CardInfo cardInfo)
     {
         enabled = true;
         indicatorTransform.gameObject.SetActive(true);
     }
-    private void ReceiveCardDeselected()
+    private void DisableIndicator()
     {
         enabled = false;
         indicatorTransform.gameObject.SetActive(false);
+    }
+
+    private void ReceiveObjectSpawned(CardInfo cardInfo)
+    {
+        DisableIndicator();
     }
 
     public void SetIndicatorObject(BaseSummonObject prefab)
