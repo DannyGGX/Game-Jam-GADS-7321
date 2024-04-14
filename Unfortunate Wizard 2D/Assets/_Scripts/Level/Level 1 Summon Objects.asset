@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef509cdd02e04a01a0359f4e023a9916, type: 3}
   m_Name: Level 1 Summon Objects
   m_EditorClassIdentifier: 
-  summonObjectData: {fileID: 0}
-  summonObjectNames: 
+  summonObjectData: {fileID: 11400000, guid: d4b49f3622a50e448a77e1be26e4dc04, type: 2}
+  summonObjectNames: 03000000040000000900000007000000
