@@ -24,12 +24,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     
     private void SpawnObject(CardInfo cardInfo)
     {
-        CreateObject();
-    }
-    
-    private void CreateObject()
-    {
-        GameObject.Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
+        Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
     }
     
     private void SetCurrentObject(CardInfo cardInfo)
@@ -38,11 +33,8 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
         indicator.SetIndicatorObject(currentObject.prefab);
     }
 
-    
-
     private Vector3 GetMousePosition()
     {
-        // get mouse position
         return Input.mousePosition;
     }
 
