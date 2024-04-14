@@ -25,6 +25,11 @@ public class Hand : MonoBehaviour
     private void Init()
     {
         numberOfCardsInHand = singleCardUI.Length;
+
+        for (int i = 0; i < singleCardUI.Length; i++)
+        {
+            singleCardUI[i].gameObject.SetActive(false);
+        }
     }
     
     private void DrawNewCards(CardInfo[] cardsInfo)

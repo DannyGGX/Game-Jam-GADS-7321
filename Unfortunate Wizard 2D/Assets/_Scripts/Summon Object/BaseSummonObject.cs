@@ -9,7 +9,7 @@ using UnityEngine;
 public class BaseSummonObject : MonoBehaviour
 {
     [SerializeField, Tooltip("The object can have multiple colliders")] private Collider2D[] colliders;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     private void SetColliderTriggerStatus(bool isTrigger)
     {
@@ -17,6 +17,11 @@ public class BaseSummonObject : MonoBehaviour
         {
             collider.isTrigger = isTrigger;
         }
+    }
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void SetColor(Color color)

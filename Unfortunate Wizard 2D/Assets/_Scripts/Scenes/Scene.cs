@@ -13,12 +13,9 @@ public enum Scenes
 {
     MainMenu,
 
-    Beginner_Dialogue,
-    Beginner_Race,
-
-    Checkpoint_Dialogue,
-    Checkpoint_Race,
-
-    Advanced_Dialogue,
-    Advanced_Race,
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5,
 }
