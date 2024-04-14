@@ -35,5 +35,13 @@ public class SummonObjectsDataSO : ScriptableObject
     {
         return UnityEngine.Random.Range(0, summonObjectDataList.Count);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum Names
+    {
+        
+    }
     
 }
