@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -12,11 +13,16 @@ public class SingleCardUI : MonoBehaviour
 
     private CardInfo _currentCard;
 
-    private void Awake()
+    private void OnEnable()
     {
         GetComponent<Button>().onClick.AddListener(OnCardClicked);
     }
-    
+
+    private void OnDisable()
+    {
+        GetComponent<Button>().onClick.RemoveListener(OnCardClicked);
+    }
+
     private void OnCardClicked()
     {
         if (_isSelected)
@@ -41,6 +47,5 @@ public class SingleCardUI : MonoBehaviour
         cardName.text = data.name.ReplaceUnderscoreWithSpace();
         
     }
-    
     
 }
