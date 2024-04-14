@@ -35,13 +35,14 @@ public class SummonObjectsDataSO : ScriptableObject
     {
         return UnityEngine.Random.Range(0, summonObjectDataList.Count);
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum Names
-    {
-        
-    }
     
+    public int GetSummonObjectDataId(SummonObjectNames name)
+    {
+        int id = Array.Find(summonObjectDataList.ToArray(), x => x.name == name).id;
+        if (id == -1)
+        {
+            throw new ArgumentException("Invalid summon object name: " + name);
+        }
+        return id;
+    }
 }
