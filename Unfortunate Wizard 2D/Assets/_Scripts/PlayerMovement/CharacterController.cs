@@ -9,9 +9,12 @@ public class CharacterController : MonoBehaviour
     public SpriteRenderer player;
     public float jumpForce;
     public float moveSpeed;
+    public float attackCooldown = 2f;
+    [SerializeField] private float timer;
 
     private bool isJumping;
     private bool canJump = true;
+    [SerializeField] private bool canAttack;
 
     private void Start()
     {
@@ -43,6 +46,24 @@ public class CharacterController : MonoBehaviour
         {
             StopJump();
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            timer = Time.deltaTime;
+            if (timer< attackCooldown)
+            {
+                canAttack = true;
+                Attack();
+               
+            }
+            else
+            {
+                canAttack= false;
+            }
+            
+        }
+       
+
     }
 
     private void Move(float direction)
@@ -57,6 +78,14 @@ public class CharacterController : MonoBehaviour
         {
             player.flipX = false;
         }
+    }
+
+    private void Attack()
+    {
+        animator.SetBool("CanAttack", true);
+
+        canAttack = false;
+        timer = -.5f;
     }
 
     private void StopMoving()
