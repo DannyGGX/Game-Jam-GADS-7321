@@ -2,10 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.Unfortunate Wizard.iml
 /projectSettingsUpdater.xml
 /modules.xml
 /contentModel.xml
+/.idea.Unfortunate Wizard 2D.iml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
