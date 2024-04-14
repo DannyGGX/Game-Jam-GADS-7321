@@ -383,6 +383,9 @@ MonoBehaviour:
   player: {fileID: 0}
   jumpForce: 500
   moveSpeed: 5
+  attackCooldown: 5
+  timer: 0
+  canAttack: 1
 --- !u!61 &2068770136
 BoxCollider2D:
   m_ObjectHideFlags: 0
