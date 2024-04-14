@@ -9,19 +9,18 @@ using UnityEngine;
 /// </summary>
 public static class EventManager
 {
-    public static Event<CardInfo> onCardSelected = new Event<CardInfo>();
-    public static Event onCardDeselected = new Event();
+    public static Event<CardInfo> onCardSelected { get; } = new Event<CardInfo>();
+    public static Event onCardDeselected { get; } = new Event();
     
-    public static Event onHandEmpty = new Event();
-    public static Event<CardInfo[]> onDrawCards = new Event<CardInfo[]>();
+    public static Event onHandEmpty { get; } = new Event();
+    public static Event<CardInfo[]> onDrawCards { get; } = new Event<CardInfo[]>();
     
-    public static Event onIndicatorRotate = new Event();
-    public static Event<CardInfo> onSpawnObject = new Event<CardInfo>();
+    public static Event onIndicatorRotate { get; } = new Event();
+    public static Event<CardInfo> onSpawnObject { get; } = new Event<CardInfo>();
     
-    public static Event onFinishLevel = new Event();
-    public static Event onKillPlayer = new Event();
-    public static Event onRestartLevel = new Event();
+    public static Event onFinishLevel { get; } = new Event();
+    public static Event onKillPlayer { get; } = new Event();
     
-    public static Event<bool> onIndicatorObjectChangeTriggerCollision = new Event<bool>(); // bool isTriggerColliding
+    public static Event<bool> onIndicatorObjectChangeTriggerCollision { get; } = new Event<bool>(); // bool isTriggerColliding
     
 }

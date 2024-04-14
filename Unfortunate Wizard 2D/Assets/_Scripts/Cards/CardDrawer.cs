@@ -1,17 +1,39 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityUtils;
 
 public class CardDrawer : Singleton<CardDrawer>
 {
-    [SerializeField] private SummonObjectsForLevelSO currentlevelSummonObjects;
+    [SerializeField] private SummonObjectsForLevelSO currentLevelSummonObjects;
     
-    public CardInfo[] DrawCards(int numberOfCards = 3)
+    private void Start()
+    {
+        DrawCards();
+    }
+    
+    private void DrawCards(int numberOfCards = 3)
     {
         CardInfo[] cardsInfo = new CardInfo[numberOfCards];
         for (int currentCard = 0; currentCard < numberOfCards; currentCard++)
         {
-            cardsInfo[currentCard] = new CardInfo(currentlevelSummonObjects.GetRandomSummonObject(), currentCard);
+            cardsInfo[currentCard] = new CardInfo(currentLevelSummonObjects.GetRandomSummonObject(), currentCard);
         }
-        return cardsInfo;
+        EventManager.onDrawCards.Invoke(cardsInfo);
+    }
+    
+    private void HandEmpty()
+    {
+        DrawCards();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.onHandEmpty.Subscribe(HandEmpty);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onHandEmpty.Unsubscribe(HandEmpty);
     }
 }

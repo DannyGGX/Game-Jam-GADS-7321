@@ -11,14 +11,12 @@ public class LevelManager : Singleton<LevelManager>
     
     private void OnEnable()
     {
-        EventManager.onRestartLevel.Subscribe(RestartLevel);
         EventManager.onKillPlayer.Subscribe(RestartLevel);
         EventManager.onFinishLevel.Subscribe(GoToNextLevel);
     }
 
     private void OnDisable()
     {
-        EventManager.onRestartLevel.Unsubscribe(RestartLevel);
         EventManager.onKillPlayer.Unsubscribe(RestartLevel);
         EventManager.onFinishLevel.Unsubscribe(GoToNextLevel);
     }
@@ -54,5 +52,12 @@ public class LevelManager : Singleton<LevelManager>
         yield return new WaitForSeconds(1.5f);
         SceneManagerScript.Instance.RestartCurrentScene();
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            RestartLevel();
+        }
+    }
 }
