@@ -1,4 +1,7 @@
-public class ObjectBehaviour
+using System;
+using UnityEngine;
+
+public abstract class ObjectBehaviour : MonoBehaviour
 {
-        
+    
 }

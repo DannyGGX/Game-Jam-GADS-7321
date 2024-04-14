@@ -17,6 +17,7 @@ public class IndicatorUI : MonoBehaviour
         EventManager.onCardSelected.Subscribe(ReceiveCardSelected);
         EventManager.onCardDeselected.Subscribe(ReceiveCardDeselected);
         EventManager.onIndicatorObjectChangeTriggerCollision.Subscribe(SetIndicatorCollision);
+        EventManager.onIndicatorRotate.Subscribe(ChangeIndicatorRotation);
     }
 
     private void OnDisable()
@@ -24,15 +25,18 @@ public class IndicatorUI : MonoBehaviour
         EventManager.onCardSelected.Unsubscribe(ReceiveCardSelected);
         EventManager.onCardDeselected.Unsubscribe(ReceiveCardDeselected);
         EventManager.onIndicatorObjectChangeTriggerCollision.Unsubscribe(SetIndicatorCollision);
+        EventManager.onIndicatorRotate.Unsubscribe(ChangeIndicatorRotation);
     }
     
     private void ReceiveCardSelected(CardInfo cardInfo)
     {
         enabled = true;
+        indicatorTransform.gameObject.SetActive(true);
     }
     private void ReceiveCardDeselected()
     {
         enabled = false;
+        indicatorTransform.gameObject.SetActive(false);
     }
 
     public void SetIndicatorObject(BaseSummonObject prefab)
@@ -50,6 +54,11 @@ public class IndicatorUI : MonoBehaviour
     private void SetIndicatorCollision(bool isTriggerColliding)
     {
         currentObject.SetColor(isTriggerColliding ? redOpaqueColor : normalOpaqueColor);
+    }
+    
+    private void ChangeIndicatorRotation()
+    {
+        indicatorTransform.rotation = RotationHelper.RotationToQuaternion();
     }
     
     
