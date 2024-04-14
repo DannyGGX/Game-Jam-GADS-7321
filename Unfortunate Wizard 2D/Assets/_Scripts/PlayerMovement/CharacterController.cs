@@ -47,13 +47,16 @@ public class CharacterController : MonoBehaviour
             StopJump();
         }
 
+        timer += Time.deltaTime;
+
         if (Input.GetMouseButtonDown(0))
         {
-            timer = Time.deltaTime;
+           
             if (timer< attackCooldown)
             {
                 canAttack = true;
                 Attack();
+                timer = -.5f;
                
             }
             else
@@ -85,7 +88,7 @@ public class CharacterController : MonoBehaviour
         animator.SetBool("CanAttack", true);
 
         canAttack = false;
-        timer = -.5f;
+        
     }
 
     private void StopMoving()
