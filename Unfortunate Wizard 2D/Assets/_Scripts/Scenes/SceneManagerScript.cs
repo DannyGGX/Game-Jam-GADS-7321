@@ -26,7 +26,7 @@ public class SceneManagerScript : MonoBehaviour
         }
         catch
         {
-            this.LogError($"Didn't find scene: {sceneName}");
+            Debug.LogError($"Didn't find scene: {sceneName}");
             return;
         }
 

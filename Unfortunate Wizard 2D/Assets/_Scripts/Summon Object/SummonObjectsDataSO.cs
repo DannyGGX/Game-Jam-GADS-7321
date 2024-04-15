@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using NaughtyAttributes;
 
 [CreateAssetMenu(fileName = "Summon Objects Data", menuName = "Scriptable Object/Summon Objects Data")]
 public class SummonObjectsDataSO : ScriptableObject
