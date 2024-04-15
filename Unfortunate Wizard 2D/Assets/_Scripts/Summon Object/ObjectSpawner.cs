@@ -5,8 +5,8 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
 {
     
     private SummonObjectData currentObject;
-    private SummonObjectsDataSO summonObjectsData;
-    private IndicatorUI indicator;
+    [SerializeField] private SummonObjectsDataSO summonObjectsData;
+    [SerializeField] private IndicatorUI indicator;
     
     private void OnEnable()
     {
@@ -24,7 +24,10 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     
     private void SpawnObject(CardInfo cardInfo)
     {
-        Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
+        if (indicator.enabled)
+        {
+            Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
+        }
     }
     
     private void SetCurrentObject(CardInfo cardInfo)

@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56b595eb24745489bb9c2c3676e7547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summonObjectsData: {fileID: 11400000, guid: d4b49f3622a50e448a77e1be26e4dc04, type: 2}
+  indicator: {fileID: 0}
 --- !u!1 &8427128040792356954
 GameObject:
   m_ObjectHideFlags: 0

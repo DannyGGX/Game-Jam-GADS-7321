@@ -15,3 +15,5 @@ MonoBehaviour:
   ScenesArray:
   - SceneName: 0
     BuildIndex: 0
+  - SceneName: 1
+    BuildIndex: 1

@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class SummonObjectInput : MonoBehaviour
@@ -32,6 +33,12 @@ public class SummonObjectInput : MonoBehaviour
     private void SetCurrentCardInfo(CardInfo cardInfo)
     {
         currentCard = cardInfo;
+        StartCoroutine(WaitForMouseUp());
+    }
+    
+    IEnumerator WaitForMouseUp()
+    {
+        yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
         enabled = true;
     }
 
