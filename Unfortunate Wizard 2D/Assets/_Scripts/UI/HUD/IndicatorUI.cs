@@ -6,6 +6,7 @@ public class IndicatorUI : MonoBehaviour
     [SerializeField, Tooltip("Empty game object that will be used as the indicator")] 
     private Transform indicatorTransform;
     private BaseSummonObject currentObject;
+    [HideInInspector] public bool IsVisible = false;
     
     private Color normalColor = new Color(1, 1, 1, 1);
     private Color normalOpaqueColor = new Color(1, 1, 1, 0.5f);
@@ -19,6 +20,8 @@ public class IndicatorUI : MonoBehaviour
         EventManager.onIndicatorObjectChangeTriggerCollision.Subscribe(SetIndicatorCollision);
         EventManager.onIndicatorRotate.Subscribe(ChangeIndicatorRotation);
         EventManager.onSpawnObject.Subscribe(ReceiveObjectSpawned);
+        
+        DisableIndicator();
     }
 
     private void OnDisable()
@@ -32,13 +35,15 @@ public class IndicatorUI : MonoBehaviour
     
     private void EnableIndicator(CardInfo cardInfo)
     {
-        enabled = true;
+        //enabled = true;
         indicatorTransform.gameObject.SetActive(true);
+        IsVisible = true;
     }
     private void DisableIndicator()
     {
-        enabled = false;
+        //enabled = false;
         indicatorTransform.gameObject.SetActive(false);
+        IsVisible = false;
     }
 
     private void ReceiveObjectSpawned(CardInfo cardInfo)

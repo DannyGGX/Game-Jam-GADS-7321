@@ -3,7 +3,7 @@ using UnityUtils;
 
 public class ObjectSpawner : Singleton<ObjectSpawner>
 {
-    
+
     private SummonObjectData currentObject;
     [SerializeField] private SummonObjectsDataSO summonObjectsData;
     [SerializeField] private IndicatorUI indicator;
@@ -24,7 +24,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     
     private void SpawnObject(CardInfo cardInfo)
     {
-        if (indicator.enabled)
+        if (indicator.IsVisible)
         {
             Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
         }
