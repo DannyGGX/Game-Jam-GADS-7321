@@ -9,17 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff6ec0ae28c494499cf16e8cee92915, type: 3}
-  m_Name: Scenes
+  m_Script: {fileID: 11500000, guid: ef509cdd02e04a01a0359f4e023a9916, type: 3}
+  m_Name: Level 4 Summon Objects
   m_EditorClassIdentifier: 
-  ScenesArray:
-  - SceneName: 0
-    BuildIndex: 0
-  - SceneName: 1
-    BuildIndex: 1
-  - SceneName: 2
-    BuildIndex: 2
-  - SceneName: 3
-    BuildIndex: 3
-  - SceneName: 4
-    BuildIndex: 4
+  summonObjectData: {fileID: 11400000, guid: d4b49f3622a50e448a77e1be26e4dc04, type: 2}
+  summonObjectNames: 04000000080000000a00000002000000010000000600000005000000

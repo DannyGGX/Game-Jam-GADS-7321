@@ -50,6 +50,9 @@ TagManager:
   - name: Foreground
     uniqueID: 1860745247
     locked: 0
+  - name: LevelExit
+    uniqueID: 800450847
+    locked: 0
   - name: InteractiveObjects
     uniqueID: 3199966779
     locked: 0

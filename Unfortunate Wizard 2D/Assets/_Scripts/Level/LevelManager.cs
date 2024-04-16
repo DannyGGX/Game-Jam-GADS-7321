@@ -7,7 +7,7 @@ using UnityUtils;
 public class LevelManager : Singleton<LevelManager>
 {
     [field: SerializeField] public int maxLevelNumber { get; private set; } = 5;
-    public int currentLevelNumber { get; private set; } = 1;
+    [field: SerializeField] public int currentLevelNumber { get; private set; } = 1;
     
     private void OnEnable()
     {
