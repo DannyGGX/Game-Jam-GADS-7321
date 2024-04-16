@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField, Tooltip("Ordered from left to right")] private SingleCardUI[] singleCardUI = new SingleCardUI[3];
+    [FormerlySerializedAs("singleCardUI")] [SerializeField, Tooltip("Ordered from left to right")] 
+    private SingleCardUI[] cards = new SingleCardUI[3];
     private int numberOfCardsInHand;
 
     private void Awake()
@@ -15,20 +17,22 @@ public class Hand : MonoBehaviour
     {
         EventManager.onDrawCards.Subscribe(DrawNewCards);
         EventManager.onSpawnObject.Subscribe(CardUsed);
+        EventManager.onCardSelected.Subscribe(DeselectAllOtherCards);
     }
     private void OnDisable()
     {
         EventManager.onDrawCards.Unsubscribe(DrawNewCards);
         EventManager.onSpawnObject.Unsubscribe(CardUsed);
+        EventManager.onCardSelected.Unsubscribe(DeselectAllOtherCards);
     }
 
     private void Init()
     {
-        numberOfCardsInHand = singleCardUI.Length;
+        numberOfCardsInHand = cards.Length;
 
-        for (int i = 0; i < singleCardUI.Length; i++)
+        for (int i = 0; i < cards.Length; i++)
         {
-            singleCardUI[i].gameObject.SetActive(false);
+            cards[i].gameObject.SetActive(false);
         }
     }
     
@@ -36,20 +40,40 @@ public class Hand : MonoBehaviour
     {
         for (int i = 0; i < cardsInfo.Length; i++)
         {
-            singleCardUI[i].SetCardUI(cardsInfo[i]);
-            singleCardUI[i].gameObject.SetActive(true);
+            cards[i].SetCardUI(cardsInfo[i]);
+            cards[i].gameObject.SetActive(true);
         }
     }
     
     private void CardUsed(CardInfo cardInfo)
     {
-        singleCardUI[cardInfo.cardId].gameObject.SetActive(false);
+        cards[cardInfo.cardId].gameObject.SetActive(false);
         
         numberOfCardsInHand--;
         if (numberOfCardsInHand <= 0)
         {
+            DeselectAllCards();
             EventManager.onHandEmpty.Invoke();
             Debug.Log("On hand empty invoked");
+        }
+    }
+
+    private void DeselectAllOtherCards(CardInfo mostRecentlySelectedCard)
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (i != mostRecentlySelectedCard.cardId)
+            {
+                cards[i].DeselectCard();
+            }
+        }
+    }
+
+    private void DeselectAllCards()
+    {
+        foreach (var card in cards)
+        {
+            card.DeselectCard();
         }
     }
 }

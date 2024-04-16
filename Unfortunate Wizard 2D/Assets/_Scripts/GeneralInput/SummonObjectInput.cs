@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class SummonObjectInput : MonoBehaviour
 {
+    [SerializeField, Tooltip("Below this world y position, the input will be disabled")] 
+    private float yPositionThreshold = -3.2f;
     
     private CardInfo currentCard;
+    private Camera mainCamera;
+    private Vector3 mousePosition;
 
     private void Awake()
     {
         enabled = false;
+        mainCamera = Camera.main;
         EventManager.onCardSelected.Subscribe(SetCurrentCardInfo);
         EventManager.onCardDeselected.Subscribe(DeselectCard);
         EventManager.onIndicatorObjectChangeTriggerCollision.Subscribe(SetEnableSate);
@@ -25,7 +30,9 @@ public class SummonObjectInput : MonoBehaviour
 
     private void Update()
     {
-        // check for mouse button down
+        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.y < yPositionThreshold) return;
+        
         if (Input.GetMouseButtonDown(0))
         {
             EventManager.onSpawnObject.Invoke(currentCard);

@@ -10,7 +10,6 @@ public class SingleCardUI : MonoBehaviour
     [SerializeField] private SummonObjectsDataSO summonObjectsData;
     [SerializeField, Tooltip("In child object")] private CardSelectionUI cardSelectionUI;
     private bool _isSelected;
-
     private CardInfo _currentCard;
 
     private void OnEnable()
@@ -27,16 +26,29 @@ public class SingleCardUI : MonoBehaviour
     {
         if (_isSelected)
         {
+            DeselectCard();
+            
+            // Only send the event if the card is clicked, not when Hand.cs deselects it
             EventManager.onCardDeselected.Invoke();
             Debug.Log("on Card Deselected invoked");
-            _isSelected = false;
         }
         else
         {
-            EventManager.onCardSelected.Invoke(_currentCard);
-            Debug.Log("on Card Selected invoked");
-            _isSelected = true;
+            SelectCard();
         }
+    }
+
+    private void SelectCard()
+    {
+        EventManager.onCardSelected.Invoke(_currentCard);
+        Debug.Log("on Card Selected invoked");
+        _isSelected = true;
+        cardSelectionUI.ChangeCardSelectionState(_isSelected);
+    }
+
+    public void DeselectCard()
+    {
+        _isSelected = false;
         cardSelectionUI.ChangeCardSelectionState(_isSelected);
     }
     
