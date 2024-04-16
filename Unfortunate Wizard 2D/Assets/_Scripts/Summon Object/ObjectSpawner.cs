@@ -7,7 +7,14 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     private SummonObjectData currentObject;
     [SerializeField] private SummonObjectsDataSO summonObjectsData;
     [SerializeField] private IndicatorUI indicator;
-    
+    private Camera mainCamera;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        mainCamera = Camera.main;
+    }
+
     private void OnEnable()
     {
         EventManager.onIndicatorRotate.Subscribe(RotationHelper.ChangeRotation);
@@ -38,7 +45,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
 
     private Vector3 GetMousePosition()
     {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
 }
