@@ -38,6 +38,11 @@ public class Hand : MonoBehaviour
     
     private void DrawNewCards(CardInfo[] cardsInfo)
     {
+        numberOfCardsInHand = cards.Length;
+        if (cardsInfo.Length != cards.Length)
+        {
+            throw new Exception("CardDrawer created incorrect number of cards");
+        }
         for (int i = 0; i < cardsInfo.Length; i++)
         {
             cards[i].SetCardUI(cardsInfo[i]);
