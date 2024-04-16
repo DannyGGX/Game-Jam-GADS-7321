@@ -9,7 +9,8 @@ using UnityEngine;
 public class BaseSummonObject : MonoBehaviour
 {
     [SerializeField, Tooltip("The object can have multiple colliders")] private Collider2D[] colliders;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidBody;
 
     private void SetColliderTriggerStatus(bool isTrigger)
     {
@@ -19,19 +20,19 @@ public class BaseSummonObject : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
     public void SetColor(Color color)
     {
-        spriteRenderer.color = color;
+        _spriteRenderer.color = color;
     }
     
     public void SetToIndicatorMode()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidBody = GetComponent<Rigidbody2D>();
         SetColliderTriggerStatus(true);
+        _rigidBody.simulated = false;
+        _rigidBody.velocity = Vector2.zero;
+        _rigidBody.angularVelocity = 0f;
     }
 
     // only runs if colliders are in trigger state

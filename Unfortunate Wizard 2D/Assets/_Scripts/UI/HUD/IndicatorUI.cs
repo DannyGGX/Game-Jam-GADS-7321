@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityUtils;
 
 public class IndicatorUI : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class IndicatorUI : MonoBehaviour
     private Color normalOpaqueColor = new Color(1, 1, 1, 0.5f);
     private Color redOpaqueColor = new Color(1, 0.5f, 0.5f, 0.5f);
 
+    private Camera _mainCamera;
+
 
     private void OnEnable()
     {
@@ -22,6 +25,7 @@ public class IndicatorUI : MonoBehaviour
         EventManager.onSpawnObject.Subscribe(ReceiveObjectSpawned);
         
         DisableIndicator();
+        _mainCamera = Camera.main;
     }
 
     private void OnDisable()
@@ -53,14 +57,18 @@ public class IndicatorUI : MonoBehaviour
 
     public void SetIndicatorObject(BaseSummonObject prefab)
     {
-        currentObject = GameObject.Instantiate(prefab, Input.mousePosition, RotationHelper.RotationToQuaternion(), indicatorTransform);
+        currentObject = GameObject.Instantiate(prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion(), indicatorTransform);
         currentObject.SetToIndicatorMode();
+        currentObject.SetColor(normalOpaqueColor);
     }
-    
+    private Vector3 GetMousePosition()
+    {
+        return _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+    }
     
     private void Update()
     {
-        indicatorTransform.position = Input.mousePosition;
+        indicatorTransform.position = GetMousePosition().With(z: 0);
     }
 
     private void SetIndicatorCollision(bool isTriggerColliding)

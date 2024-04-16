@@ -33,7 +33,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     {
         if (indicator.IsVisible)
         {
-            Instantiate(currentObject.prefab, GetMousePosition(), RotationHelper.RotationToQuaternion());
+            Instantiate(currentObject.prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion());
         }
     }
     
