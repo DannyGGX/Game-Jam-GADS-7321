@@ -38,7 +38,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
 
     private Vector3 GetMousePosition()
     {
-        return Input.mousePosition;
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
 }

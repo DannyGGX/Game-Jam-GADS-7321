@@ -20,6 +20,7 @@ public class CardDrawer : Singleton<CardDrawer>
             cardsInfo[currentCard] = new CardInfo(currentLevelSummonObjects.GetRandomSummonObject(), currentCard);
         }
         EventManager.onDrawCards.Invoke(cardsInfo);
+        Debug.Log("on Draw Cards invoked");
     }
     
     private void HandEmpty()

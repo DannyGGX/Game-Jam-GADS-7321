@@ -7,31 +7,36 @@ public class SummonObjectInput : MonoBehaviour
 {
     
     private CardInfo currentCard;
-    private void OnEnable()
+
+    private void Awake()
     {
+        enabled = false;
         EventManager.onCardSelected.Subscribe(SetCurrentCardInfo);
         EventManager.onCardDeselected.Subscribe(DeselectCard);
         EventManager.onIndicatorObjectChangeTriggerCollision.Subscribe(SetEnableSate);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         EventManager.onCardSelected.Unsubscribe(SetCurrentCardInfo);
         EventManager.onCardDeselected.Unsubscribe(DeselectCard);
         EventManager.onIndicatorObjectChangeTriggerCollision.Unsubscribe(SetEnableSate);
     }
-    
+
     private void Update()
     {
         // check for mouse button down
         if (Input.GetMouseButtonDown(0))
         {
             EventManager.onSpawnObject.Invoke(currentCard);
+            Debug.Log("On Spawn Object invoked");
+            enabled = false;
         }
     }
     
     private void SetCurrentCardInfo(CardInfo cardInfo)
     {
+        Debug.Log("Summon object input received card selected event");
         currentCard = cardInfo;
         StartCoroutine(WaitForMouseUp());
     }

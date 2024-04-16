@@ -49,6 +49,7 @@ public class Hand : MonoBehaviour
         if (numberOfCardsInHand <= 0)
         {
             EventManager.onHandEmpty.Invoke();
+            Debug.Log("On hand empty invoked");
         }
     }
 }

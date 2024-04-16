@@ -28,11 +28,13 @@ public class SingleCardUI : MonoBehaviour
         if (_isSelected)
         {
             EventManager.onCardDeselected.Invoke();
+            Debug.Log("on Card Deselected invoked");
             _isSelected = false;
         }
         else
         {
             EventManager.onCardSelected.Invoke(_currentCard);
+            Debug.Log("on Card Selected invoked");
             _isSelected = true;
         }
         cardSelectionUI.ChangeCardSelectionState(_isSelected);

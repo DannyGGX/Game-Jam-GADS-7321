@@ -38,10 +38,12 @@ public class BaseSummonObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EventManager.onIndicatorObjectChangeTriggerCollision.Invoke(true);
+        Debug.Log("on Indicator Object Change Trigger Collision invoked with true");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         EventManager.onIndicatorObjectChangeTriggerCollision.Invoke(false);
+        Debug.Log("on Indicator Object Change Trigger Collision invoked with false");
     }
 }
