@@ -11,6 +11,7 @@ public class BaseSummonObject : MonoBehaviour
     [SerializeField, Tooltip("The object can have multiple colliders")] private Collider2D[] colliders;
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidBody;
+    private Color _normalColor = new Color(1f, 1f, 1f, 1f);
 
     private void SetColliderTriggerStatus(bool isTrigger)
     {
@@ -46,5 +47,14 @@ public class BaseSummonObject : MonoBehaviour
     {
         EventManager.onIndicatorObjectChangeTriggerCollision.Invoke(false);
         Debug.Log("on Indicator Object Change Trigger Collision invoked with false");
+    }
+    
+    public void SetToNormalMode()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        SetColliderTriggerStatus(false);
+        _rigidBody.simulated = true;
+        SetColor(_normalColor);
     }
 }

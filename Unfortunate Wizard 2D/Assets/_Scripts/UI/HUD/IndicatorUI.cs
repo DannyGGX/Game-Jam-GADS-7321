@@ -9,7 +9,6 @@ public class IndicatorUI : MonoBehaviour
     private BaseSummonObject currentObject;
     [HideInInspector] public bool IsVisible = false;
     
-    private Color normalColor = new Color(1, 1, 1, 1);
     private Color normalOpaqueColor = new Color(1, 1, 1, 0.5f);
     private Color redOpaqueColor = new Color(1, 0.5f, 0.5f, 0.5f);
 
@@ -46,6 +45,10 @@ public class IndicatorUI : MonoBehaviour
     private void DisableIndicator()
     {
         //enabled = false;
+        if (currentObject != null)
+        {
+            Destroy(currentObject.gameObject);
+        }
         indicatorTransform.gameObject.SetActive(false);
         IsVisible = false;
     }
@@ -57,7 +60,7 @@ public class IndicatorUI : MonoBehaviour
 
     public void SetIndicatorObject(BaseSummonObject prefab)
     {
-        currentObject = GameObject.Instantiate(prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion(), indicatorTransform);
+        currentObject = Instantiate(prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion(), indicatorTransform);
         currentObject.SetToIndicatorMode();
         currentObject.SetColor(normalOpaqueColor);
     }

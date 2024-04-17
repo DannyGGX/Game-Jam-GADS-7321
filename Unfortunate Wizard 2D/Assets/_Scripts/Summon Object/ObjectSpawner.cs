@@ -13,6 +13,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     {
         base.Awake();
         mainCamera = Camera.main;
+        
     }
 
     private void OnEnable()
@@ -33,7 +34,8 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     {
         if (indicator.IsVisible)
         {
-            Instantiate(currentObject.prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion());
+            var obj = Instantiate(currentObject.prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion());
+            obj.SetToNormalMode();
         }
     }
     
