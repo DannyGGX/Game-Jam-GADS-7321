@@ -5,8 +5,6 @@ using UnityUtils;
 
 public class CardDrawer : Singleton<CardDrawer>
 {
-    [SerializeField] private SummonObjectsForLevelSO currentLevelSummonObjects;
-    
     private void Start()
     {
         DrawCards();
@@ -17,7 +15,7 @@ public class CardDrawer : Singleton<CardDrawer>
         CardInfo[] cardsInfo = new CardInfo[numberOfCards];
         for (int currentCard = 0; currentCard < numberOfCards; currentCard++)
         {
-            cardsInfo[currentCard] = new CardInfo(currentLevelSummonObjects.GetRandomSummonObject(), currentCard);
+            cardsInfo[currentCard] = new CardInfo(SummonObjectDataManager.CurrentLevelSummonObjects.GetRandomSummonObject(), currentCard);
         }
         EventManager.onDrawCards.Invoke(cardsInfo);
         Debug.Log("on Draw Cards invoked");

@@ -15,7 +15,7 @@ public class SummonObjectsDataSO : ScriptableObject
         }
     }
 
-    private void OnValidate()
+    public void Initialize()
     {
         SetIds();
     }

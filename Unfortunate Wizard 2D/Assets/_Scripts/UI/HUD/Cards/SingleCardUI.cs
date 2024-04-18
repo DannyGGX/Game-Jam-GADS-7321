@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SingleCardUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI cardName;
-    [SerializeField] private SummonObjectsDataSO summonObjectsData;
     [SerializeField, Tooltip("In child object")] private CardSelectionUI cardSelectionUI;
     private bool _isSelected;
     private CardInfo _currentCard;
@@ -56,7 +55,7 @@ public class SingleCardUI : MonoBehaviour
     public void SetCardUI(CardInfo cardInfo)
     {
         _currentCard = cardInfo;
-        SummonObjectData data = summonObjectsData.GetSummonObjectData(cardInfo.summonObjectId);
+        SummonObjectData data = SummonObjectDataManager.SummonObjectsData.GetSummonObjectData(cardInfo.summonObjectId);
         
         cardName.text = data.name.ReplaceUnderscoreWithSpace();
         

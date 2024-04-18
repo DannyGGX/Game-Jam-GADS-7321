@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,14 +7,17 @@ public class LevelManager : Singleton<LevelManager>
 {
     [field: SerializeField] public int maxLevelNumber { get; private set; } = 5;
     [field: SerializeField] public int currentLevelNumber { get; private set; } = 1;
-    
-    private void OnEnable()
+
+    protected override void Awake()
     {
+        base.Awake();
+        SummonObjectDataManager.LoadDataForCurrentLevel(currentLevelNumber);
+        
         EventManager.onKillPlayer.Subscribe(RestartLevel);
         EventManager.onFinishLevel.Subscribe(GoToNextLevel);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         EventManager.onKillPlayer.Unsubscribe(RestartLevel);
         EventManager.onFinishLevel.Unsubscribe(GoToNextLevel);

@@ -5,7 +5,6 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
 {
 
     private SummonObjectData currentObject;
-    [SerializeField] private SummonObjectsDataSO summonObjectsData;
     [SerializeField] private IndicatorUI indicator;
     private Camera mainCamera;
 
@@ -41,7 +40,7 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     
     private void SetCurrentObject(CardInfo cardInfo)
     {
-        currentObject = summonObjectsData.GetSummonObjectData(cardInfo.summonObjectId);
+        currentObject = SummonObjectDataManager.SummonObjectsData.GetSummonObjectData(cardInfo.summonObjectId);
         indicator.SetIndicatorObject(currentObject.prefab);
     }
 
