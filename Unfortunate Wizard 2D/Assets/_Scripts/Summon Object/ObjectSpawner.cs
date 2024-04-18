@@ -31,17 +31,15 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     
     private void SpawnObject(CardInfo cardInfo)
     {
-        if (indicator.IsVisible)
-        {
-            var obj = Instantiate(currentObject.prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion());
-            obj.SetToNormalMode();
-        }
+        var obj = Instantiate(currentObject.prefab, GetMousePosition().With(z: 0), RotationHelper.RotationToQuaternion());
+        obj.SetToNormalMode();
     }
     
     private void SetCurrentObject(CardInfo cardInfo)
     {
         currentObject = SummonObjectDataManager.SummonObjectsData.GetSummonObjectData(cardInfo.summonObjectId);
         indicator.SetIndicatorObject(currentObject.prefab);
+        Debug.Log("ObjectSpawner received card selected event");
     }
 
     private Vector3 GetMousePosition()
