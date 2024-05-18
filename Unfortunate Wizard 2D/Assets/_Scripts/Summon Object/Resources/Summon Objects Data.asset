@@ -38,7 +38,7 @@ MonoBehaviour:
     <mass>k__BackingField: 0
     <centerOfMassDisplacement>k__BackingField: {x: 0, y: 0}
   - <name>k__BackingField: 2
-    <prefab>k__BackingField: {fileID: 3877599984637523615, guid: 3e98172b69365a64a903243066b2a6c0, type: 3}
+    <prefab>k__BackingField: {fileID: 1309558672447981234, guid: 782a4ccf456bfbc4b95f2f813aef3992, type: 3}
     <mass>k__BackingField: 0
     <centerOfMassDisplacement>k__BackingField: {x: 0, y: 0}
   - <name>k__BackingField: 9
