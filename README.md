@@ -7,9 +7,9 @@ Ludum Dare 55 game jam. The theme was *summoning*.\
 We did it as part of course work for the Vega game design degree in the 5th semester.
 
 ## Team members
-* Daniel Glanz - programmer, team leader
+* Daniel Glanz - Lead programmer, team leader
 * Ahmad Bhyat - artist, main designer
-* Wandipa Marema - artist
+* Wandipa Marema - programmer, artist
 * Hakeem Shaik - documenter
 
 ## 3rd party assets used
